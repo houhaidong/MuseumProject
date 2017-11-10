@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>国家博物馆</title>
+	<link rel="stylesheet" type="text/css" href="leaflet.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+	<script src="leaflet-src.js"></script>
+	<script type="text/javascript" src="./vue/vue.min.js"></script>
+	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		body {
+		    padding: 0;
+		    margin: 0;
+		    background: #f8eee4;
+		    font-family:Helvetica;
+		}
+		html, body, #map {
+		    height: 100vh;
+		    width: 100vw;
+		    background: #f8eee4;
+		}
+
+		.headimg{
+			position: relative;
+			z-index: 9999;
+			width: 0.875rem;
+			height: 0.223rem;
+			margin: 0px auto;
+			margin-top: 0.041rem;
+			background: url(./img/headimg.png) no-repeat top center;
+			background-size: 100% 100%;	
+		}
+		.exhibitInfo{
+			position: fixed;
+			z-index: 1000000;
+			width: 0.963rem;
+			height: 0.275rem;
+			box-sizing: border-box;
+			bottom: 0.019rem;
+			left: 0.019rem;
+			background: url(./img/footimg.png) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		.leaflet-control-attribution{
+			display: none;
+		}
+
+
+		.exhibit_5{
+			width: 10px;
+			height: 10px;
+			background:red;
+		}
+
+	</style>
+</head>
+<body>
+
+	
+ 	<div id='map' >
+ 		
+	 	
+ 		
+ 	</div>
+
+ 	<script>
+ 			var windowsWidth = document.documentElement.clientWidth;
+       			 document.querySelector("html").setAttribute("style","font-size:"+windowsWidth+"px");
+ 			var imageUrl = "./map/map_bg.png"
+ 			var imgWidth = 1509;
+ 			var imgHeight = 1154;
+
+ 			var map = L.map("map",{
+            // 修改坐标系
+               crs : L.CRS.Simple,
+               zoomControl:false,
+            // 设置最大拖动边界
+               maxBounds :[[-(imgHeight/2),-(imgWidth/2)],[(imgHeight/2),(imgWidth/2)]],
+            // 设置缩放的最小值
+               minZoom : -2,
+            // 设置地图放大的最大值W
+               // maxZoom : 2,
+            //设置初始化的缩放值
+               zoom:-2,
+            //设置地图中心点
+               center:[0,0],
+ 			})
+
+
+
+ 			var exhibit_5 = L.divIcon({className: 'exhibit_5'});
+
+ 			L.marker([0,0],{icon: exhibit_5}).addTo(map)
+
+ 			
+
+            //  var exhibit_5 = "./map/exhibit_5.png";
+            //    // 添加图片到地图
+            // var exhibit_5_map = L.imageOverlay(exhibit_5,[[-(820/2)-102,-(1160/2)+117],[(820/2)-102,(1160/2)+117]]).addTo(map);
+
+            var exhibit_6 = "./map/exhibit_6.png";
+               // 添加图片到地图
+            var exhibit_6_map = L.imageOverlay(exhibit_6,[[-(318/2)-353,-(353/2)-524],[(318/2)-353,(353/2)-524]]).addTo(map);
+
+
+             var line = "./map/line.png";
+               // 添加图片到地图
+            var line_map = L.imageOverlay(line,
+            	[[-(imgHeight/2),-(imgWidth/2)],[(imgHeight/2),(imgWidth/2)]],
+            	{
+            		alt:"line_map"
+            	});
+
+            	line_map.on("click",function(e){
+            		alert(2)
+            	})
+
+
+            	line_map.addTo(map)
+
+            	$("img[alt='line_map']").click(function(){
+            		alert(12)
+            	})
+            	
+
+           
+            	
+
+
+            // var  APP = new Vue({
+            // 	el:"#app",
+            // 	data:{
+            // 		status:"slideOutUp"
+            // 	},
+            // 	methods:{
+
+
+
+            // 	}
+            // })
+
+
+
+ 	</script>
+</body>
+</html>

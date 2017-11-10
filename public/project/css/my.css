@@ -1,0 +1,153 @@
+	*{
+    		margin:0px;
+    		padding:0px;
+    	}
+    	.leaflet-control-attribution {
+    		display: none;
+    	}
+    	html, body, #map {
+		    height: 100vh;
+		    width: 100vw;
+		}
+    body{
+      font-size: 14px;
+    }
+		.my-div-icon {
+			width: 30px !important;
+			height: 37px !important;
+			background: url('/images/map_point.png') no-repeat center center;
+			background-size: 100% 100%;
+      margin-left: -15px !important;
+      margin-top: -37px !important;
+		}	
+
+    .pass-div-icon {
+      width: 30px !important;
+      height: 37px !important;
+      background: url('/images/map_point_pass.png') no-repeat center center;
+      background-size: 100% 100%;
+      margin-left: -15px !important;
+      margin-top: -34px !important;
+    }
+
+		.leaflet-top {
+		  	top: 150px;
+		}
+
+		#top{
+			position: absolute;
+			width: 100%;
+      overflow: hidden;
+			z-index: 999;
+      background: rgba(255,255,255,0.95);
+      transition: all 1s;
+
+		}
+		#top .row{
+			 padding: 0px 10px;
+       display: flex;
+       display: box;
+       display: -webkit-flex;
+       justify-content: center;
+		} 
+    #top .row .rotate{
+      flex:3;
+      display: flex;
+      display: box;
+      display: -webkit-flex;
+      justify-content: center;
+      align-items: center ;
+    }
+    #top .row .rotate img{
+       width: 0.188rem;
+       height: 0.188rem;
+       border-radius: 50%;
+   
+    }
+    .ro{
+      animation:mymove 5s infinite;
+      -moz-animation:mymove 5s infinite; /* Firefox */
+      -webkit-animation:mymove 5s infinite;  Safari and Chrome 
+      -o-animation:mymove 5s infinite; /* Opera */
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+    }
+
+    #top .row .music{
+      flex:8;
+      display: flex;
+      display: -webkit-flex;
+      display: box;
+      flex-direction: column;
+      overflow: hidden;
+
+    }
+    #top .row .music .title{
+       font-size: 0.04rem;
+       font-weight: 600;
+       text-align: center;
+       flex-basis:40px;
+       line-height: 40px;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       overflow: hidden;
+
+    }
+    #top .row .music .main{
+      display: flex;
+      display: -webkit-flex;
+      display: box;
+    }
+
+    #top .row .music .main .descript{
+         flex: 1;
+         display: flex;
+         display: -webkit-flex;
+         display: box;
+         align-items: center;
+         justify-content: space-around;
+         padding:0px 5px;
+         font-size: 0.05rem;
+         color: #353535;
+         line-height: 0.117rem;
+    }
+    #top .row .music .main .descript img{
+         width: 0.125rem;
+         height: 0.125rem;
+    }
+    #top .row .music .main .listen{
+        flex: 1;
+        display: flex;
+        display: -webkit-flex;
+        display: box;
+        align-items: center;
+        justify-content: space-around;
+        padding:0px 5px;
+        font-size: 18px;
+        font-size: 0.05rem;
+        color: #353535;
+        line-height: 0.117rem;
+    }
+    #top .row .music .main .listen img{
+         width: 0.125rem;
+         height: 0.125rem;
+    }
+    @-webkit-keyframes mymove 
+    {
+    0%   { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+    }
+    @-webkit-keyframes shake 
+    {
+       0%   { margin-top: 0px;}
+       100% {margin-top: 0px;}
+    }
+
+    .pause{
+      -webkit-animation-play-state:paused;
+      animation-play-state:paused;
+
+    }
+    .hidden{
+      visibility: hidden;
+    }

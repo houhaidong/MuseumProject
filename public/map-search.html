@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">   -->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- <meta content="yes" name="apple-touch-fullscreen"> -->
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=567699ab3bd7c660f6e556c1b65e2345&plugin=AMap.ToolBar,AMap.Autocomplete,AMap.PlaceSearch"></script>
+    <script type="text/javascript" src="./js/flexible.js"></script>
+    <script type="text/javascript" src="./js/flexible_css.js"></script>
+    <style>
+        [data-dpr="1"] .font{
+            font-size: 15px;
+        }
+
+        [data-dpr="2"] .font{
+            font-size: 30px;
+        }
+
+        [data-dpr="3"] .auto-item{
+            font-size: 45px;
+        }
+        [data-dpr="1"] .auto-item{
+            font-size: 12px !important;
+        }
+
+        [data-dpr="2"] .auto-item{
+            font-size: 24px !important;
+        }
+
+        [data-dpr="3"] .font{
+            font-size: 36px !important;
+        }
+        .amap-sug-result{
+            width: 60%;
+        }
+        .car-type{
+            /*border: 1px solid red;*/
+            width: 100%;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            /*margin-top: .4rem;*/
+            background-color: #f1f0f0;
+        }
+        .clearfix{
+            clear: both;
+            list-style: none;
+            margin: 0 auto;
+            /*border: 1px solid green;*/
+            height: 1rem;
+            line-height: 1rem;
+            width: 70%
+        }
+        .clearfix li{
+            float: left;
+            margin-left: .8rem;
+        }
+        .map-line{
+            /*border: 1px solid black;*/
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            margin-top: 1rem;
+
+        }
+        #q{
+            clear: both;
+        }
+        .top {
+            margin:0 auto;
+            width: 80%;
+            height: 1rem;
+            /*border: 1px solid blue;*/
+            text-align: center;
+            line-height: 1rem;
+        }
+        .bottom{
+            margin:0 auto;
+            width: 80%;
+            height: 1rem;
+            /*border: 1px solid blue;*/
+            margin-top: .9rem;
+            text-align: center;
+            line-height: 1rem;
+        }
+        .map a:link{
+            color: #666;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body style="">
+<div class="map-all" style="width: 100%;height: 100%;">
+    <div class="nav" style="width: 100%;background-color:#3d92fb;">
+        <div class="search font" style="width: 50%;text-align: center;height: 1.3rem;line-height: 1.3rem;float: left;">
+            <span style="color: white;">搜索</span>
+        </div>
+        <div class="map font" style="width: 50%;text-align: center;height: 1.3rem;line-height: 1.3rem;float: left;">
+            <a href="./map.html"><span style="color:rgba(255,255,255,.5)">地图</span></a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="car-type">
+        <ul class="clearfix">
+            <li><img id="car" src="" style="width:1.3rem;" onclick="changeType(1)"></li>
+            <li><img id="bus" src="" style="width:1.3rem;" onclick="changeType(2)"></li>
+            <li><img id="wark" src="" style="width:1.3rem;" onclick="changeType(3)"></li>
+        </ul>
+    </div>
+    <input type="hidden" name="" id="type" value="">
+    <div class="map-line">
+        <div id="q"></div>
+        <div class="top">
+            <span style="color: lightgrey">从</span>
+            <input class="start font" id="end" type="text" name="" style="width: 70%;height: .9rem;border: 0px solid white;border-bottom:1px solid #666;margin-left: .2rem" placeholder="输入起点">
+        </div>
+        <div class="bottom">
+            <span style="color: lightgrey">到</span>
+            <input class="end font" type="text" name="" style="width: 70%;height: .9rem;border: 0px solid white;border-bottom:1px solid #666;margin-left: .2rem;" value="滨州市沾化区博物馆" readonly="readonly">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#car').attr('src','./images/zhanhua/car-g.png')
+        $('#bus').attr('src','./images/zhanhua/bus.png')
+        $('#wark').attr('src','./images/zhanhua/floot.png')
+        $('#type').val('car');
+    })
+    function changeType(status){
+        if(status ==1 ){
+            $('#car').attr('src','./images/zhanhua/car-g.png')
+            $('#bus').attr('src','./images/zhanhua/bus.png')
+            $('#wark').attr('src','./images/zhanhua/floot.png')
+            $('#type').val('car');
+        }else if(status == 2 ){
+            $('#car').attr('src','./images/zhanhua/car.png')
+            $('#bus').attr('src','./images/zhanhua/bus-g.png')
+            $('#wark').attr('src','./images/zhanhua/floot.png')
+            $('#type').val('bus');
+        }else if(status == 3){
+            $('#car').attr('src','./images/zhanhua/car.png')
+            $('#bus').attr('src','./images/zhanhua/bus.png')
+            $('#wark').attr('src','./images/zhanhua/floot-g.png')
+            $('#type').val('wark');
+        }
+    }
+</script>
+<script type="text/javascript">
+    AMap.plugin('AMap.Autocomplete',function(){
+        //实例化Autocomplete
+        var autoOptions = {
+            city: "", //城市，默认全国
+            input:"end"//使用联想输入的input的id
+        };
+        autocomplete= new AMap.Autocomplete(autoOptions);
+        AMap.event.addListener(autocomplete, "select", function(e){
+            console.log(e);
+            var start = e.poi.name;
+            var saddr = e.poi.location.M+','+e.poi.location.O+','+start;
+            var daddr='118.103475,37.69386,沾化博物馆';
+            var saddr_lonlat = e.poi.location.M+','+e.poi.location.O+','+start;
+            var daddr_lonlat = '118.103475,37.69386,沾化博物馆';
+            var saddr_typecode = e.poi.typecode;
+            daddr_typecode = '140100';
+            var saddr_poiid = 	e.poi.id;
+            var daddr_poiid = 'B021F03SXO';
+            var a = $('#type').val();
+            if(a == 'car'){
+                var navigation = 'carmap';
+            }else if(a == 'bus'){
+                var navigation = 'buslist';
+            }else if(a == 'wark'){
+                var navigation = 'walkmap';
+            }
+            var url = "http://m.amap.com/navigation/"+navigation;
+            url += "/saddr="+saddr+"&daddr="+daddr+"&saddr_lonlat="+saddr_lonlat+"&daddr_lonlat="+daddr_lonlat+"&saddr_typecode="+saddr_typecode+"&daddr_typecode="+daddr_typecode+"&saddr_poiid="+saddr_poiid+"&daddr_poiid="+daddr_poiid+"&maddr=&sort=&addPassing=remove";
+            console.log(url);
+            // window.location.href=''+url;
+            window.open(url)
+
+        });
+    })
+</script>

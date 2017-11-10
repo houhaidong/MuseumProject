@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- <meta content="yes" name="apple-touch-fullscreen"> -->
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=567699ab3bd7c660f6e556c1b65e2345&plugin=AMap.ToolBar,AMap.Autocomplete,AMap.PlaceSearch"></script>
+    <script type="text/javascript" src="./js/flexible.js"></script>
+    <script type="text/javascript" src="./js/flexible_css.js"></script>
+    <style type="text/css">
+        .amap-zoomcontrol{
+            width:.8rem !important;
+            height: 2rem;
+        }
+        .amap-zoom-touch-plus{
+            height: 1rem !important;
+        }
+        .amap-zoom-touch-minus>div, .amap-zoom-touch-plus>div{
+            line-height: 1rem !important;
+            height: 1rem;
+        }
+        [data-dpr="1"] .amap-zoom-touch-plus>div {
+            font-size: 15px !important;
+        }
+
+        [data-dpr="2"] .amap-zoom-touch-plus>div {
+            font-size: 30px !important;
+        }
+
+        [data-dpr="3"] .amap-zoom-touch-plus>div {
+            font-size: 45px !important;
+        }
+        [data-dpr="1"] .amap-zoom-touch-minus>div {
+            font-size: 15px !important;
+        }
+
+        [data-dpr="2"] .amap-zoom-touch-minus>div {
+            font-size: 30px !important;
+        }
+
+        [data-dpr="3"] .amap-zoom-touch-minus>div {
+            font-size: 45px !important;
+        }
+        .amap-zoom-ruler{
+            width: .8rem !important;
+            height: 1rem !important;
+        }
+        .amap-touch-toolbar .amap-zoomcontrol {
+            right: .2rem !important;
+            bottom: 4rem !important;
+        }
+        .amap-geo{
+            width: .8rem !important;
+            height: 1rem !important;
+            /*background: url(/images/loc_gray.png) 1rem 1rem no-repeat #fff !important;*/
+            /*margin-bottom: 3.9999999rem !important;*/
+            margin-right: .2rem;
+        }
+        .amap-touch-toolbar .amap-zoomcontrol:after{
+            height: .041rem !important;
+            top: 1.1rem !important;
+        }
+        .amap-geolocation-con{
+            bottom:6.2rem !important;
+        }
+        .amap-icon{
+            width: 2rem !important;
+            height: 2rem !important;
+        }
+        .amap-container img{
+            /*width: .5rem !important;*/
+            /*height: .9rem !important;*/
+        }
+
+        #panel{
+            /*border: 1px solid red;*/
+            width: 100%;
+            z-index: 999;
+            position: fixed;
+            height: 3rem;
+            bottom: .3rem;
+            /*background-color: white;*/
+            /*  overflow-x:hidden;
+              overflow-y:auto;*/
+        }
+        #go a:link{
+            color: #666;
+            text-decoration: none;
+        }
+        #go a:visited{
+            color: #666;
+        }
+        #go{
+            margin: 0 auto;
+            margin-top: .2rem;
+
+            height: 1.2rem;
+            margin-left: .1rem;
+
+        }
+        #dw{
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid white;
+            position: fixed;
+            z-index: 999;
+            text-align: center;
+            line-height: 1rem;
+            bottom: 5rem;
+            background: url('./images/zhanhua/location.png') no-repeat -0.25rem;
+            background-size: 1.5rem 1.5rem;
+            margin-left:.3rem;
+            background-color: white;
+            box-shadow:0 0 1px #000 inset;
+        }
+    </style>
+</head>
+<body>
+<div id="container" style="width:100%;height:18rem;">
+    <div id="dw" onclick="Maplocation()">
+
+    </div>
+    <div id="panel" style="">
+        <div style="border: 1px solid #eff3f3;width: 90%;margin: 0 auto;height: 2.4rem;background-color: white">
+            <div style="margin-top: .1rem;margin-left: .2rem;">
+                <span style=""><b>沾化区博物馆</b></span>
+            </div>
+            <div style="margin-top: .2rem;margin-left: .2rem">
+                <span style="color:lightgray">315省道北100米</span>
+            </div>
+            <div style="border-top: 1px solid lightgray;width: 90%;margin: 0 auto;margin-top: .2rem;text-align: center;">
+                <div id="go">
+                    <a href="./map-search.html">去这里</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container',{
+        zoom:16,
+        center: [118.103475,37.69386]
+    });
+    var marker = new AMap.Marker({
+        position: [118.103475,37.69386],
+    });
+    marker.setMap(map);
+
+    AMap.plugin(['AMap.ToolBar'],
+            function(){
+                map.addControl(new AMap.ToolBar());
+
+            });
+
+    function Maplocation(){
+        map.plugin('AMap.Geolocation', function () {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                showButton: true,        //显示定位按钮，默认：true
+                buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                noIpLocate:0,
+                zoomToAccuracy:true,     //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                showButton:false
+                // showCircle:false
+
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+    }
+
+    /* AMap.service('AMap.Driving',function(){//回调函数
+     //实例化Driving
+     driving= new AMap.Driving({
+     map:map,
+     city: '北京',
+     panel: "panel"
+     });
+     driving.search([116.379028, 39.865042], [118.080167,37.696571], function(status, result) {
+     //TODO 解析返回结果，自己生成操作界面和地图展示界面
+     console.log(123);
+     });
+
+     })*/
+
+
+
+
+
+
+
+</script>

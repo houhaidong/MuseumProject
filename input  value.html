@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react示例</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+  </head>
+  <style type="text/css">
+
+  </style>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+    class App extends React.Component{
+      constructor(...arges){
+        super(...arges);
+      }
+
+      render(){
+        return <div>
+          <form action="http://www.baidu.com/" method="get">
+                用户名：<input type="text" name="name" /><br />
+                是否同意：<input type="checkbox" name='a'/>
+                <input type="button" value="提交" />
+          </form>
+        </div>
+      }
+    };
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>

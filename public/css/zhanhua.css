@@ -1,0 +1,216 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+body {
+    padding: 0;
+    margin: 0;
+    background: #f2e9e1;
+    font-family:Helvetica;
+    font-size: 14px;
+    -webkit-text-size-adjust: 100% !important;
+}
+html, body{
+    
+    width: 100vw;
+    background: #f2e9e1;
+    height: auto;
+}
+.hide1{
+    /*visibility:hidden !important;*/
+}
+
+#map{
+  height: 100vh;
+  background: #f2e9e1;
+}
+
+.leaflet-right-map{
+  left: 6px;
+  font-size:14px; 
+}
+
+.headimg{
+  position: relative;
+  z-index: 9999;
+  width:70%;
+  /*height: 0.223rem;*/
+  margin: 0px auto;
+  margin-top: 0.041rem;
+  /*background: url(/img/title.png) no-repeat top center;*/
+  background-size: 100% 100%;
+    text-align: center;
+}
+.exhibitInfo{
+  position: fixed;
+  z-index: 1000000;
+  width: 0.963rem;
+  height: 0.275rem;
+  box-sizing: border-box;
+  bottom: 0.04rem;
+  left: 0.019rem;
+  /*background: url(/images/zhanhua/footimg1.png) no-repeat center center;*/
+  background-size: 100% 100%;
+}
+.leaflet-control-attribution{
+  display: none;
+}
+.leaflet-image-layer[alt='exhibit_5']{
+  box-shadow: -13px 3px 9px 0px  #888888;
+}
+
+.my-div-icon{
+  width: 22px !important;
+  height:33px  !important;
+  background:url(/images/point_default.png) no-repeat center center;
+  background-size:100% 100%;
+  margin-left: -14px !important;
+  margin-top: -40px !important;
+}
+
+.pass-div-icon{
+  width: 22px !important;
+  height:33px  !important;
+  background:url(/images/point_selected.png) no-repeat center center;
+  background-size:100% 100%;
+  margin-left: -14px !important;
+  margin-top: -40px !important;
+
+}
+
+.scale-div-icon{
+  position: absolute;
+  font-size: 0px;
+  width: 50px !important;
+  height:50px  !important;
+  background-size:100% 100%;
+  margin-left: -28px !important;
+  margin-top: -33px !important;
+  z-index:10 !important;
+
+}
+
+.template{
+  font-size: 14px;
+  background-color: #fdf4d7;
+  font-family:Helvetica;
+}
+.circle{
+  display: inline-block;
+  width:0.09375rem;
+  height: 0.09375rem;
+  padding: 0.024688rem;
+}
+#indicatorContainer{
+    width: 0.09375rem;
+    height: 0.09375rem;
+    display: block;
+    border:2px solid black;
+    border-radius: 50%;
+    text-align: center;
+
+}
+.leaflet-pane{
+    transform:translate3d(-1px, -35px, 0px);
+}
+.leaflet-bottom{
+    margin-bottom: 120px;
+}
+.pause{
+
+      background: url(/images/play_circle.png) no-repeat center center;
+      background-size: 100% 100%;
+}
+
+.play{
+
+      background: url(/images/pause_circle.png) no-repeat center center;
+      background-size: 100% 100%;
+
+}
+
+.author{
+  position: fixed;
+  bottom: 0.05rem;
+  text-align: center;
+  width: 1rem;
+}
+
+.exhibit-iconIndex{
+    z-index:700 !important;
+}
+.exhibit-icon{
+    position:absolute;
+    top:-15px;
+    left:-15px;
+    width:100px !important;
+    height: 100px !important;
+}
+.layui-layer-iframe1{
+
+
+} 
+#layui-layer-iframe1{
+//  overflow-y: scroll;
+//  height:1000px !important;
+
+} 
+.layui-layer-content{
+//-webkit-overflow-scrolling:touch; 
+//overflow: scroll; 
+//overflow-y: scroll;
+ }
+.scroll-wrapper {  
+  -webkit-overflow-scrolling: touch;  
+    overflow-y: scroll;  
+} 
+  .bottom_exhibit{
+   
+    position: fixed;
+   
+    width:1rem;
+    text-align: center;
+}
+.music11{
+    /*border:1px solid yellow;*/
+    float: right;
+    margin-right: 0.04rem;
+    margin-top: -0.02rem;
+    /*border-radius: 25px;
+    -webkit-transform: rotate(360deg);
+    animation: rotation 3s linear infinite;
+    -moz-animation: rotation 3s linear infinite;
+    -webkit-animation: rotation 3s linear infinite;
+    -o-animation: rotation 3s linear infinite;*/
+  }
+#img img{
+   width: 100%;
+}
+#img p{
+  text-align:left;
+  margin-top: 10px;
+}    
+.bot{
+  position:absolute;
+  bottom:0px;
+  z-index:9999;
+  overflow:hidden;
+}
+.video{
+  width: 100%;
+  /*border: 1px solid red;*/
+}
+.leaflet-bottom {
+    margin-bottom: 1.36rem !important;
+}
+.leaflet-touch .leaflet-bar a{
+    width:28px !important;
+    height:28px !important;
+    line-height:28px !important;
+}
+.leaflet-touch .leaflet-control-zoom-in {
+    font-size: 18px !important;
+}
+.leaflet-touch .leaflet-control-zoom-out {
+    font-size: 18px !important;
+}
