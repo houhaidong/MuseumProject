@@ -1,0 +1,111 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style type="text/css">
+      body,html,#container{
+        height: 100%;
+        margin: 0px;
+      }
+      #tip{
+        width: 100%;
+        height: 20px;
+        border:1px solid red;
+        position: absolute;
+        z-index: 9999;
+        right: 0px;
+        top: 0px;
+      }
+      #container{
+
+      }
+    </style>
+    <title>快速入门</title>
+  </head>
+  <body>
+    <div id="container" tabindex="0"></div>
+    <div id="tip"></div>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=567699ab3bd7c660f6e556c1b65e2345"></script>
+    <script type="text/javascript">
+        var map = new AMap.Map('container',{
+            resizeEnable: true,
+            zoom: 20,
+            center:[116.363025,40.081175]
+        });
+
+        var marker = new AMap.Marker({
+          position: [116.363025,40.081175],//marker所在的位置
+          map:map//创建时直接赋予map属性
+        });
+
+        AMap.plugin(['AMap.ToolBar'],function(){
+          //创建并添加工具条控件
+          var toolBar = new AMap.ToolBar();
+          map.addControl(toolBar);
+        });
+
+       AMap.service('AMap.Walking',function(){//回调函数
+
+          walking = new AMap.Walking({
+              map: map,
+                // panel: "result"
+          }); 
+
+          //传经纬度
+          walking.search([116.363725,40.081628], [116.37489,40.085037], function(status, result) {
+              //TODO 解析返回结果，自己生成操作界面和地图展示界面
+          });
+                 //传名称、城市信息
+          walking.search([{keyword:'回龙观东大街地铁站B口',city:'北京'},{keyword:'龙锦苑东五区南门',city:'北京'}], function(status, result){
+              //TODO 解析返回结果，自己生成操作界面和地图展示界面
+          });  
+
+
+        })
+
+       var map, geolocation;
+    //加载地图，调用浏览器定位服务
+    map = new AMap.Map('container', {
+        resizeEnable: true
+    });
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'LB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+
+        setInterval(function(){
+          geolocation.getCurrentPosition();
+          // alert(1);
+        },5000);
+        // geolocation.watchPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+
+    //解析定位结果
+    function onComplete(data) {
+        var str=['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        if(data.accuracy){
+             str.push('精度：' + data.accuracy + ' 米');
+        }//如为IP精确定位结果则没有精度信息
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        document.getElementById('tip').innerHTML = str.join('<br>');
+    }
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
+
+       
+    </script>
+  </body>
+</html>
