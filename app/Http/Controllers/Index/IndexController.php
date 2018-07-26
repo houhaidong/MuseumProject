@@ -185,5 +185,9 @@ class IndexController extends BaseController
     {
         echo 123;die;
 	}
+	
+	public function test2(){
+		echo 1233333;die;
+	}
 
 }
