@@ -188,6 +188,7 @@ class IndexController extends BaseController
 	
 	public function test2(){
 		echo 1233333;die;
+		echo 112233;die;
 	}
 
 }
