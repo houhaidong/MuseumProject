@@ -181,4 +181,9 @@ class IndexController extends BaseController
 		return json_encode($exhibit,1);
 	}
 
+    public function ceshi()
+    {
+        echo 123;die;
+	}
+
 }
